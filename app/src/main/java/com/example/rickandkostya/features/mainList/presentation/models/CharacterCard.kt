@@ -1,6 +1,6 @@
-package com.example.domain.Models
+package com.example.rickandkostya.features.mainList.presentation.models
 
-data class CardData(
+data class CharacterCard(
     val painterResourceId: String,
     val title: String,
     val status: String,

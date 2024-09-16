@@ -1,4 +1,4 @@
-package com.example.rickandkostya.Screens.mainScreen
+package com.example.rickandkostya.features.mainList.presentation.ui.components
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.FilterChip

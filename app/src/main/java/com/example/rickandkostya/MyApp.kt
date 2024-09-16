@@ -1,10 +1,8 @@
 package com.example.rickandkostya
 
 import android.app.Application
-import com.example.data.di.RickAndMortyApi.retrofitModule
-import com.example.data.di.RickAndMortyApi.di.dataModule
-import com.example.domain.di.domainModule
-import com.example.rickandkostya.di.appModule
+import com.example.rickandkostya.core.network.retrofitModule
+import com.example.rickandkostya.features.mainList.di.mainListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -18,7 +16,10 @@ class MyApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MyApp)
-            modules(appModule, retrofitModule, dataModule, domainModule)
+            modules(
+                retrofitModule,
+                mainListModule
+            )
         }
     }
 }

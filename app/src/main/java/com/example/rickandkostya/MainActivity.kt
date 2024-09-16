@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.rickandkostya.Screens.mainScreen.MainScreen
+import com.example.rickandkostya.features.mainList.presentation.ui.MainScreen
 import com.example.rickandkostya.ui.theme.RickAndKostyaTheme
 
 class MainActivity : ComponentActivity() {
