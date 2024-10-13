@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.ksp)
+
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
 android {
@@ -39,9 +43,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -50,8 +51,6 @@ android {
 }
 
 dependencies {
-    implementation (project(":data"))
-    implementation (project(":domain"))
     //Koin
     implementation ("io.insert-koin:koin-android:3.4.0")
     implementation ("io.insert-koin:koin-core:3.4.0")
@@ -61,6 +60,14 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     // Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+
+
+    implementation(libs.network.logging.interceptor)
+    implementation(libs.network.okhttp)
 
     //Default
     implementation(libs.androidx.core.ktx)

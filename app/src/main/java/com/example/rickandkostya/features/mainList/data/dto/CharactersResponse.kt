@@ -1,5 +1,8 @@
 package com.example.rickandkostya.features.mainList.data.dto
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class InfoResponse(
     val count: Int,
     val pages: Int,
@@ -7,16 +10,19 @@ data class InfoResponse(
     val prev: String?
 )
 
+@Serializable
 data class OriginResponse(
     val name: String,
     val url: String
 )
 
+@Serializable
 data class LocationResponse(
     val name: String,
     val url: String
 )
 
+@Serializable
 data class CharacterResponse(
     val id: Int,
     val name: String,
@@ -32,6 +38,7 @@ data class CharacterResponse(
     val created: String
 )
 
+@Serializable
 data class CharacterApiResponse(
     val info: InfoResponse,
     val results: List<CharacterResponse>

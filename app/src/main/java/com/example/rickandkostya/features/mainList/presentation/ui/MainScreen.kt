@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,7 +23,6 @@ import com.example.rickandkostya.features.mainList.presentation.MainScreenViewMo
 import com.example.rickandkostya.features.mainList.presentation.ui.components.Card
 import com.example.rickandkostya.ui.theme.RickAndKostyaTheme
 import org.koin.androidx.compose.getViewModel
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MainScreen(viewModel: MainScreenViewModel = getViewModel()) {
@@ -30,18 +30,28 @@ fun MainScreen(viewModel: MainScreenViewModel = getViewModel()) {
     Box(
         modifier = Modifier
             .background(Color.Gray)
-            .padding(start = 4.dp, end = 4.dp)
+            .padding(start = 4.dp, end = 4.dp),
+        contentAlignment = Alignment.Center
     ) {
         when (val cards = state.cardsState) {
             is ApiResult.Error -> {
-                Text(text = cards.error ?: " Error")
+                Text(
+                    modifier = Modifier.padding(48.dp),
+                    text = cards.error ?: " Error"
+                )
             }
 
             ApiResult.Loading -> {
                 CircularProgressIndicator()
             }
+
             is ApiResult.Success -> {
                 if (cards.data.isNullOrEmpty()) {
+                    Text(
+                        modifier = Modifier.padding(48.dp),
+                        text = "Empty"
+                    )
+                } else {
                     val list = cards.data ?: emptyList()
                     LazyColumn {
                         items(list) { card ->
@@ -56,8 +66,6 @@ fun MainScreen(viewModel: MainScreenViewModel = getViewModel()) {
 
                         }
                     }
-                } else {
-                    Text(text = "Empty")
                 }
             }
         }
